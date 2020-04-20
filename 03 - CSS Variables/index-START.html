@@ -40,7 +40,11 @@
       --variable-color: ;
       --variable-blur: ;
     }
-    
+
+  .hl { 
+    color: var(--variable-color);
+    }
+
    img {
     border: var(--variable-spacing) solid var(--variable-color);
     filter: blur(var(--variable-blur));
@@ -56,26 +60,52 @@
   </style>
 
   <script>
-let spacing = document.getElementById('spacing')
 
-spacing.addEventListener('input', ()=> {
-  img[0].style.setProperty('--variable-spacing', spacing.value + 'px')
+
+// Ma version, mais qui ne repond pas à l'exo car il faut changer les variables de façon globale et pas direct sur l'élement
+
+// let spacing = document.getElementById('spacing')
+
+// spacing.addEventListener('input', ()=> {
+//   img.style.setProperty('--variable-spacing', spacing.value + 'px')
+// })
+
+// let blurry = document.getElementById('blur')
+
+// blurry.addEventListener('input', ()=> {
+//   img.style.setProperty('--variable-blur', blurry.value + 'px')
+// })
+
+// let color = document.getElementById('base')
+// let img = document.querySelector('img')
+// let h1 = document.querySelector('.hl')
+
+// color.addEventListener('input', ()=> {
+//   img.style.setProperty('--variable-color', color.value)
+//   h1.style.setProperty('--variable-color', color.value)
+// })
+
+
+// Ici version ou on modifie les variable via le body du document. ça répond à l'exo.
+//Des qu'il repere une variable, il change.
+
+const spacing = document.getElementById('spacing');
+const blurry = document.getElementById("blur");
+const color = document.getElementById('base');
+
+var body = document.body;
+
+spacing.addEventListener('input', () => {
+    body.style.setProperty('--variable-spacing', spacing.value + "px");
 })
 
-let blurry = document.getElementById('blur')
-
-blurry.addEventListener('input', ()=> {
-  img[0].style.setProperty('--variable-blur', blurry.value + 'px')
+blurry.addEventListener('input', () => {
+    body.style.setProperty('--variable-blur',  blurry.value + "px");
 })
 
-let color = document.getElementById('base')
-let img = document.getElementsByTagName('img')
-
-color.addEventListener('input', ()=> {
-  img[0].style.setProperty('--variable-color', color.value)
+color.addEventListener('input', () => {
+    body.style.setProperty('--variable-color', color.value);
 })
-
-console.log(img)
 
   </script>
 

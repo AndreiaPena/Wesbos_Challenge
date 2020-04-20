@@ -51,9 +51,11 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
 /* RegExp permet la reconnaissance d'un modèle dans un texte, ici les termes The, An et A. Le ^ signifie en début de ligne.
 | signifie ou. () car il s'agit d'un groupe.
 */
-const regex = new RegExp ('^(The|A|An) ');
 
 // méthode manuelle pour remplacer les termes (The|A|An) par rien => ""
+
+const regex = new RegExp ('^(The|A|An) ');
+
 bands[0] = bands[0].replace(regex, '');
 bands[1] = bands[1].replace(regex, '');
 bands[4] = bands[4].replace(regex, '');
@@ -61,10 +63,11 @@ bands[6] = bands[6].replace(regex, '');
 bands[10] = bands[10].replace(regex, '');
 bands[12] = bands[12].replace(regex, '');
 
+
+
 /* méthode automatique et opti pour remplacer les termes (The|A|An) par rien => ""
  boucle for comprenant un if, si un index (i) match avec le regex (The|A|An) alors, replace par rien => ""
 */
-
 // var regex = new RegExp ('^(The|A|An) ');
 // for(var i = 0; i < bands.length; i++){
 //   if(bands[i].match(regex)){
