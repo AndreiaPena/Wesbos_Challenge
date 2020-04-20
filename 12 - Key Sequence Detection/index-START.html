@@ -7,6 +7,24 @@
 </head>
 <body>
 <script>
+
+// je declare la variable de mon mot de passe qui est un string
+let codeSecret  = 'konami';
+
+// je declare uen variable pour l'array vide que je veux remplir avec les touches cliqués
+let  arrKeys = [];
+
+// gestionnaire d'écoute sur l'appui de la touche 
+document.addEventListener( 'keydown', (e)=>{
+  // on ajoute à la fin du tableau la touche appuyé
+arrKeys.push(e.key);
+ // join permet de concatener le tableau en un string et include et reperer l'élement similaire
+ //donc si dans le string converti, se trouve le code secret alors on declenche le script cornify
+if(arrKeys.join('').includes(codeSecret)){
+  cornify_add()
+} 
+})
+
 </script>
 </body>
 </html>
