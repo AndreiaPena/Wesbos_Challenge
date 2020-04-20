@@ -46,6 +46,8 @@
   <ul id="bands"></ul>
 
 <script>
+
+
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
 /* RegExp permet la reconnaissance d'un modèle dans un texte, ici les termes The, An et A. Le ^ signifie en début de ligne.
@@ -62,8 +64,6 @@ bands[4] = bands[4].replace(regex, '');
 bands[6] = bands[6].replace(regex, '');
 bands[10] = bands[10].replace(regex, '');
 bands[12] = bands[12].replace(regex, '');
-
-
 
 /* méthode automatique et opti pour remplacer les termes (The|A|An) par rien => ""
  boucle for comprenant un if, si un index (i) match avec le regex (The|A|An) alors, replace par rien => ""
@@ -87,7 +87,32 @@ for(let i=0; i<bands.length; i++){
   ul.appendChild(li)
 }
 
-console.log(document.getElementsByTagName('li')[0])
+
+
+
+// // Version d'Arthur qui repond mieux à l'exercice, qui est de trier sans supprimer completement les termes The An et A
+
+// const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+// function strip(leGroupe) {
+//     return leGroupe.replace(/^(the |an |a )/i, "").trim();
+// }
+
+// const bandsSorted = bands.sort((a, b) => {
+//     if (strip(a) > strip(b)) {
+//         return 1;
+//     } else {
+//         return -1;
+//     }
+// })
+
+// var ul = document.getElementById('bands');
+
+// for (let i = 0; i < bandsSorted.length; i++) {
+//     let li = document.createElement('li');
+//     li.appendChild(document.createTextNode(bandsSorted[i]));
+//     ul.appendChild(li);
+// }
 
 </script>
 
