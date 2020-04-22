@@ -96,6 +96,41 @@
   </div>
 
 <script>
+
+// const boxs = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+// function handleCheck(e){
+//   if (e.shiftKey && this.checked) {
+//     boxs.forEach(box => {
+//       box.checked = true;
+//     })
+// }
+// }
+
+// boxs.forEach( box => {
+//    box.addEventListener('click', handleCheck);
+// })
+
+
+const boxs = Array.from(document.querySelectorAll('.inbox input[type = "checkbox"]'));
+boxs.forEach( box => box.addEventListener('click',handleCheck));
+let posA;
+let posB;
+let nbClick = 0;
+
+function handleCheck(event) {
+  nbClick++;
+  if (nbClick == 1){
+    posA = boxs.indexOf(this)
+  } else if (nbClick == 2){
+    posB = boxs.indexOf(this)
+    let gap = boxs.slice(posA + 1,posB);
+  } 
+  else if (event.shiftKey && this.checked)  {
+    boxs.gap[0].checked= true;
+ }
+  }
+
 </script>
 </body>
 </html>

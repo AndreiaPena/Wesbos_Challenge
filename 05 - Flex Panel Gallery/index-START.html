@@ -127,41 +127,16 @@
 
   <script>
 
- let p = document.getElementsByTagName('p');
- let div = document.getElementsByClassName('panel');
+let toggleSwitch = document.getElementsByClassName('panel');
 
- for (let i = 0; i < div.length; i++) {
-  div[i].addEventListener ('click', ()=> {
-  div[i].classList.toggle('panellittle');
-  })
-
+for (let i = 0; i< toggleSwitch.length; i++) {
+  const moveText = toggleSwitch[i].getElementsByTagName('p');
+  toggleSwitch[i].addEventListener('click', () => { 
+  toggleSwitch[i].classList.toggle('panellittle');
+  moveText[0].classList.toggle('textUp');
+  moveText[2].classList.toggle('textDown');
+})
 }
-
-div[0].addEventListener ('click', ()=> {
-p[0].classList.toggle('textup');
-p[2].classList.toggle('textdown');
-})
-
-div[1].addEventListener ('click', ()=> {
-p[3].classList.toggle('textup');
-p[5].classList.toggle('textdown')
-})
-
-div[2].addEventListener ('click', ()=> {
-p[6].classList.toggle('textup');
-p[8].classList.toggle('textdown')
-})
-
-div[3].addEventListener ('click', ()=> {
-p[9].classList.toggle('textup');
-p[11].classList.toggle('textdown')
-})
-
-div[4].addEventListener ('click', ()=> {
-p[12].classList.toggle('textup');
-p[14].classList.toggle('textdown')
-})
-
 </script>
 
 
