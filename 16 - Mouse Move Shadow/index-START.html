@@ -1,40 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
+    <meta charset="UTF-8">
+    <title>Mouse Shadow</title>
 </head>
+
 <body>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+    <div class="hero">
+        <h1 contenteditable>🔥WOAH!</h1>
+    </div>
 
-  <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+    <style>
+        html {
+            color: black;
+            font-family: sans-serif;
+        }
+        
+        body {
+            margin: 0;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+        }
+        /* :root {
+            --var1-axeX: 10px;
+            --var1-axeY: 10px;
+            --var2-axeX: 20px;
+            --var2-axeY: 20px;
+        }
+         */
+        
+        h1 {
+            /* text-shadow: var(--var1-axeX) var(--var1-axeY) rgb(214, 33, 33), var(--var2-axeX) var(--var2-axeY) rgb(21, 228, 21); */
+            text-shadow: 10px 10px orangered;
+            font-size: 100px;
+        }
+    </style>
 
-  body {
-    margin: 0;
-  }
+    <script>
+        let body = document.body;
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+        //Ici ma premiere version avec l'utilisation des css variables comme dans l'exercice 3
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+        // document.addEventListener('mousemove', (event) => {
+        //     body.style.setProperty('--var1-axeX', event.clientX - 300 + "px");
+        //     body.style.setProperty('--var1-axeY', event.clientY - 100 + "px");
+        //     body.style.setProperty('--var2-axeX', event.clientX - 400 + "px");
+        //     body.style.setProperty('--var2-axeY', event.clientY - 200 + "px")
+        // })
 
-<script>
-</script>
+
+        //Ici une autre version en gardant dans le css le text shadow sans variable CSS
+
+        let text = document.querySelector('h1')
+
+        document.addEventListener('mousemove', (event) => {
+            let x = event.clientX;
+            let y = event.clientY;
+            text.style.textShadow = ` ${x * -1}px  ${y}px  rgb(214, 33, 33),
+                                      ${x}px ${y}px rgb(21, 228, 21),
+                                      ${x}px ${y * -1}px rgb(4, 0, 255)`;
+
+        })
+    </script>
 </body>
+
 </html>
