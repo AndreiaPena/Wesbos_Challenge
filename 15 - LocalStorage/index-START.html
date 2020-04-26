@@ -26,11 +26,12 @@
   </div>
 
 <script>
-  // déclaration de trois constantes : 1. on récupère l'input add 
+  // déclaration de trois constantes : 1. on récupère l'input qui ajoute, add
   //2. On récupère l'ul qui va être la liste des plats
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  //3. On convertit du JSON en objet JS avec parse() ou tableau vide s'il n'y a rien d'ajouté
+  //3. On convertit du JSON en objet JS avec parse() ou tableau vide s'il n'y a rien d'ajouté initialement
+  // le getItems va ici permetrre de récupérer les données dans le stockage locale, comme ça au refresh les données restent
   const items = JSON.parse(localStorage.getItem('items')) || [];
 
 
@@ -52,8 +53,14 @@
     items.push(item);
 
     populateList(items, itemsList);
+
+//L'interface Storage de l'API Web Storage donne accès au stockage local vous permettant par exemple d'ajouter, de modifier ou de supprimer des éléments enregistrés.
+// La propriété localStorage vous permet d'accéder à un objet local Storage. les données stockées dans le localStorage n'ont pas de délai d'expiration
+// Ces données stockés peuvent se voir dans stockage > stockage local avec sa key et sa value
+// ici on utilise setItems qui permet de mettre à jour la value du key qui est items
     localStorage.setItem('items', JSON.stringify(items));
-    // reset automatiquement l'input ou l'on écrit, comme ça a chaque ajout d'un élément, l'input redevient vide pour pouvoir réecrire derrière
+
+// reset automatiquement l'input ou l'on écrit, comme ça a chaque ajout d'un élément, l'input redevient vide pour pouvoir réecrire derrière
     this.reset();
   }
 
@@ -67,19 +74,27 @@
   // cela retournera dans le HTML (grâce au innerHTML) un li; comprenant un input checkbox et un label
       return `
         <li>
-  <!-- utilisation des littéraux de gabarits, pour récuperer la valeur de l'id et du plat-->  
-  <!-- un if/else raccourci   
+  <!-- utilisation des littéraux de gabarits, pour récuperer la valeur de l'id et du plat. Utilisation d'une if/else en version raccourcie, si le plat est ajouté alors on ajoute checked sinon rien -->    
           <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
           <label for="item${i}">${plate.text}</label>
         </li>
       `;
+  // join() permet de concatener tous les éléments du tableau, le tableau de map(), pour en faire une nouvelle chaine de caractère
+  // sans lui, les éléments vont être séparés par une virgule, alors qu'avec ils vont être joint ensemble
     }).join('');
   }
 
+// fonction qui permet de garder en mémoire les petits tacos lorsque l'on refresh
+// en clair il permet de maintenir le done : true , à l'élément cliqué
   function toggleDone(e) {
+  // event.target est une référence à l'objet qui a envoyé l'événement, donc itemsList, l'ul.
     if (!e.target.matches('input')) return; // skip this unless it's an input
+// déclaration de la target pour la réutiliser après
     const el = e.target;
+// Dataset est un tableau associatif de DOMString, qui associe à chaque nom d'attribut de données sur mesure la valeur qu'il contient.
+// en clair ici on récupère l'index de chaque input
     const index = el.dataset.index;
+// trick si items[index].done est true alors il sera son contraire donc false, grâce à l'utilisation de !
     items[index].done = !items[index].done;
     localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemsList);
